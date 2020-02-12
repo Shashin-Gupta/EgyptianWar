@@ -3,7 +3,7 @@ package EgyptianWar;
 /**
  *
  * @author Shashin Gupta
- * @version 0.0.1
+ * @version 0.0.2
  *
  */
 
@@ -30,8 +30,15 @@ public class Coordinator {
 
     }
 
+    // If the method returns true that mean the player won
     private static boolean compare(String player, String computer) {
+        if (player.hashCode() > computer.hashCode()) return true;
+        else if (player.hashCode() < computer.hashCode()) return false;
+        else return compareLoop(player, computer);
+    }
 
+    private static boolean compareLoop(String player, String computer) {
+        return false;
     }
 
     private static class Card {
@@ -51,6 +58,20 @@ public class Coordinator {
         public String getSuit() {
             return suit;
         }
+
+        public int hashCode() {
+            if (number == "K") return 13;
+            else if (number == "Q") return 12;
+            else if (number == "J") return 11;
+            else if (number == "A") return 14;
+            else return Integer.parseInt(number);
+        }
+
+        public boolean equals(Object o) {
+            if (!(o instanceof Card)) return false;
+            return o.hashCode() == this.hashCode();
+        }
+
     }
 
 }
